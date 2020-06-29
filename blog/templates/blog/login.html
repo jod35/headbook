@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %} {% load crispy_forms_tags %} {% block body %}
+
+<div class="form">
+  {%if messages %} {% for message in messages %}
+  <center>
+    <li class="alert alert-{{message.tags}}">{{ message }}</li>
+  </center>
+  {% endfor %} {% endif %}
+  <center><h1>Login</h1></center>
+  <form action="" method="post">
+    {% csrf_token %} {{ form |crispy }}
+    <input
+      type="submit"
+      value="Login"
+      class="btn btn-lg btn-long btn-primary"
+    />
+  </form>
+  <br />
+  <small class="text-primary"
+    >Do not have an account?
+    <a href="{% url 'blog:register' %}" class="text-success">Sign Up</a></small
+  >
+</div>
+{% endblock body %}

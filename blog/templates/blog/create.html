@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %} {% load crispy_forms_tags %} {% block body %}
+<div class="home">
+  <div class="left">
+    <h1>Create A Post</h1>
+    <div class="post-form">
+      <form action="" method="post">
+        {% csrf_token %} {{ form|crispy }}
+        <input
+          type="submit"
+          value="Post"
+          class="btn btn-primary btn-long btn-lg"
+        />
+      </form>
+    </div>
+  </div>
+  <div class="right">
+    <ul class="list-group">
+      <li class="list-group-item"><a href="{% url 'blog:home' %}">Home</a></li>
+      <li class="list-group-item">
+        <a href="{% url 'blog:create_post' %}">Create Post</a>
+      </li>
+      <li class="list-group-item"><a href="">My Profile</a></li>
+      <li class="list-group-item">
+        <a href="{% url 'blog:logout' %}">Log Out</a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock body %}

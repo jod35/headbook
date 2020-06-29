@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %} {% block body %} {% if user.is_authenticated %}
+<div class="home">
+  <div class="left">
+    {% if messages %} {% for message in messages %}
+    <li class="alert alert-{{message.tags}}">{{message}}</li>
+    {% endfor %} {% endif %}
+
+    <h1>Posts</h1>
+
+    {% for post in posts %}
+    <div class="jumbotron">
+      <h2>
+        <a href="/posts/{{post.title}}" class="text-primary">{{post.title}}</a>
+      </h2>
+      by <span>{{post.author}}</span> on <small>{{post.created}}</small>
+    </div>
+      {% endfor %} {% include 'blog/pagination.html' %}
+    </div>
+    <div class="right">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="{% url 'blog:home' %}">Home</a>
+        </li>
+        <li class="list-group-item">
+          <a href="{% url 'blog:create_post' %}">Create Post</a>
+        </li>
+        <li class="list-group-item"><a href="">My Profile</a></li>
+        <li class="list-group-item">
+          <a href="{% url 'blog:my_posts' %}">My Posts</a>
+        </li>
+
+        <li class="list-group-item">
+          <a href="{% url 'blog:logout' %}">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% else %}
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Welcome</h1>
+      <p class="lead">This is my simple Django Blog</p>
+      <hr class="my-2" />
+
+      <p class="lead">
+        <a
+          class="btn btn-primary btn-lg"
+          href="{% url 'blog:register' %}"
+          role="button"
+          >Get Started</a
+        >
+      </p>
+    </div>
+  </div>
+  {% endif %} {% endblock body %}
+</div>

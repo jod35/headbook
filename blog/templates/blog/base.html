@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'blog/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/main.css' %}">
+
+    {% if title %}
+    <title>DjangoApp1 |{{title}}</title>
+    {% else %}
+    <title>DjangoApp1</title>
+    {% endif %}
+  </head>
+  <body>
+
+  
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <a class="navbar-brand" href="{% url 'blog:home' %}">Django App 1</a>
+
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blog:home' %}">Home</a>
+          </li>
+          
+          
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blog:logout' %}">Log Out</a>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blog:register' %}">Sign Up</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'blog:login' %}">Login</a>
+          </li>
+          {% endif %}
+            
+         
+          
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    {% block body %}
+        
+    {% endblock body %}
+        
+  </body>
+</html>

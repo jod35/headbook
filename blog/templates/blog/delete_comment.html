@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %} {% block body %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-9">Do you really want to delete {{comment}}?</h1>
+ 
+      <form action="" method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger " type="submit" href="Jumbo action link" role="button"
+        >Yes Sure</button
+      >
+      </form>
+      <a href="" class="btn btn-primary">Cancel</a>
+    </p>
+  </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="home">
+    <div class="left">
+      {% if messages %} {% for message in messages %}
+      <li class="alert alert-{{message.tags}}">{{message}}</li>
+      {% endfor %} {% endif %}
+  
+     <div class="post-container">
+      <h2 >{{post.author}}</h2>
+      <h3 class="text-primary">{{post.title}}</h3>
+      <p>{{post.body}}</p>
+     </div>
+     <form action="" method="post">
+         {% csrf_token %}
+         {{ form|crispy }}
+         <div class="options">
+         <input type="submit" value="Comment" class="btn btn-primary">
+         <a href="/posts/{{post.title}}" class="btn btn-info">Cancel</a></div>
+
+     </form>
+     <br>
+     <br>
+      <h4>{{comments.count}} Comments</h4>
+     {% for comment in comments %}
+         <div class="comment">
+             <h3>{{comment.author}}</h3>
+             {{comment.content}}
+             <br>
+             <a href="/delete/{{comment.id}}" class="text-danger">Delete</a>
+         </div>
+     {% endfor %}
+         
+  
+      
+    </div>
+    <div class="right">
+      <ul class="list-group">
+        <li class="list-group-item"><a href="{% url 'blog:home' %}">Home</a></li>
+        <li class="list-group-item">
+          <a href="{% url 'blog:create_post' %}">Create Post</a>
+        </li>
+        <li class="list-group-item"><a href="">My Profile</a></li>
+        <li class="list-group-item">
+          <a href="{% url 'blog:logout' %}">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  </div>
+
+{% endblock body %}

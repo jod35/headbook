@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %} {% block body %}
+<div class="container">
+  <div class="post-container">
+    <h1 class="display-6">{{ post.title }}</h1>
+    <p class="lead">by {{post.author}}</p>
+    <hr class="my-2" />
+    <p>{{post.body}}</p>
+
+    <br /><br />
+    <a href="/comment/{{post.id}}"
+      >{{comments.count}} Comment{{comments|pluralize}}</a
+    >
+
+    {% if post.author == user %}
+    <a href="/delete_post/{{post.id}}" class="text-danger">Delete</a>
+    {% endif %}
+  </div>
+
+  {% for comment in comments %}
+  <div class="comment">
+    <h3>{{comment.author}}</h3>
+    {{comment.content}}
+    <br />
+
+    {% if comment.author == user %}
+    <a href="/delete/{{comment.id}}" class="text-danger">Delete</a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock body %}

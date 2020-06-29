@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %} {% block body %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">You Are Logged Out</h1>
+
+    <p class="lead">
+      Please
+      <a class="text-primary" href="{% url 'blog:login' %}" role="button"
+        >Login Again</a
+      >
+    </p>
+  </div>
+</div>
+{% endblock body %}
